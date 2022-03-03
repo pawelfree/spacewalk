@@ -8,10 +8,10 @@ import { SpaceVideo } from '../space-videos.service';
   styleUrls: ['./video-list.component.css']
 })
 export class VideoListComponent {
-  @Input() videoData: SpaceVideo[] | undefined;
+  @Input() videoData: SpaceVideo[] | null = null;
   @Output() selectVideo = new EventEmitter<SpaceVideo>();
 
-  currentVideo: SpaceVideo | undefined;
+  currentVideo: SpaceVideo | null = null;
 
   setCurrentVideo(video: SpaceVideo) {
     this.currentVideo = video;

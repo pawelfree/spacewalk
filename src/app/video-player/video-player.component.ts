@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ClassSansProvider, Component, Input } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 import { SpaceVideo } from '../space-videos.service';
@@ -10,12 +10,12 @@ import { SpaceVideo } from '../space-videos.service';
 })
 export class VideoPlayerComponent {
 
-  private theVideo: SpaceVideo | undefined;
+  private theVideo: SpaceVideo | null = null;
 
   // Create a trusted version of the video URL each time
   // the input video changes.
   //
-  @Input() set video(value: SpaceVideo | undefined) {
+  @Input() set video(value: SpaceVideo | null) {
     this.theVideo = value;
     if (value && value.videoUrl) {
       this.videoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(
@@ -26,7 +26,7 @@ export class VideoPlayerComponent {
 
   get video() { return this.theVideo; }
 
-  videoUrl: SafeUrl | undefined;
+  videoUrl: SafeUrl | null = null;
 
   constructor(private domSanitizer: DomSanitizer) { }
 }
